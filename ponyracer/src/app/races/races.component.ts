@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RacesServiceWithHttpService } from "./races-service-with-http.service";
 
 @Component({
   selector: 'ns-races',
@@ -9,8 +10,12 @@ export class RacesComponent implements OnInit {
 
   races: any = [];
 
+  asyncGreeting = new Promise(resolve => {
+    window.setTimeout(() => resolve({ name: 'CPoivrez' }), 10000);
+  });
 
-  constructor() { }
+
+  constructor(private racesServiceWithHttpService: RacesServiceWithHttpService) { }
 
   ngOnInit() {
   }
@@ -20,7 +25,11 @@ export class RacesComponent implements OnInit {
   }
 
   onNewRace() {
+    this.racesServiceWithHttpService.list();
+  }
 
+  onRaceService() {
+    this.racesServiceWithHttpService.list();
   }
   onButtonClick(event) {
     console.log(event);

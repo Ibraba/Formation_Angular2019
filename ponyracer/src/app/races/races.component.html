@@ -1,10 +1,15 @@
 <h5>
   Races
 </h5>
-<button (click)="refreshRaces()"> refresh the races list</button>
+<button (click)="refreshRaces(); onRaceService()"> refresh the races list</button>
 <p> {{ races.length }} races</p>
 <div *ngIf="races.length; else empty"><h2>Races.</h2></div>
 <ng-template #empty><h2>No races.</h2></ng-template>
 <ul>
-  <li *ngFor="let race of races">{{ race.name }}</li>
+  <li *ngFor="let race of races | slice:0:2 as total; index as i">{{i+1}}/{{total.length}}: {{ race.name }}</li>
 </ul>
+<p>{{ 'Ninja Squad' | slice:2:5 }}</p>
+<p>{{ 12345 | number:'.9' }}</p>
+<p>{{ 0.8 | percent }}</p>
+<p>{{ 10.6 | currency:'CAD':'symbol-narrow' }}</p>
+<div *ngIf="asyncGreeting | async as user">{{user.name }}</div>
